@@ -1,6 +1,11 @@
 # Use official Python runtime as base image
 FROM python:3.9-slim
 
+# Apply security updates to packages inherited from the base image.
+RUN apt-get update \
+	&& apt-get upgrade -y \
+	&& rm -rf /var/lib/apt/lists/*
+
 # Set working directory in container
 WORKDIR /app
 
