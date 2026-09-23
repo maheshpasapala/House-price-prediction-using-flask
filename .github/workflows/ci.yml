@@ -60,8 +60,8 @@ jobs:
           exit-code: '1'
 
       - name: Upload filesystem scan results
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-filesystem.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-filesystem.sarif
 
@@ -87,8 +87,8 @@ jobs:
           exit-code: '1'
 
       - name: Upload image scan results
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-image.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-image.sarif
 
